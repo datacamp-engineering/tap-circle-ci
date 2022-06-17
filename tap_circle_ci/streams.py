@@ -8,7 +8,7 @@ import singer.metrics as metrics
 from tap_circle_ci.client import get_all_items
 
 # We leave a week offset for currently running pipelines
-TIME_BUFFER_FOR_RUNNING_PIPELINES = datetime.timedelta(days=0)
+TIME_BUFFER_FOR_RUNNING_PIPELINES = datetime.timedelta(days=1)
 
 
 def get_bookmark(state: dict, project: str, stream_name: str, bookmark_key: str) -> Optional[str]:
