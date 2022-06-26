@@ -93,9 +93,11 @@ def sync(config: dict, state: dict, catalog: dict) -> None:
     projects = list(filter(None, config['project_slugs'].split(' ')))
     add_authorization_header(config['token'])
     for project in projects:
-        LOGGER.info(f'Syncing project {project}')
-        sync_single_project(project, state, catalog)
-
+        try:
+            LOGGER.info(f'Syncing project {project}')
+            sync_single_project(project, state, catalog)
+        except:
+            continue
 
 def sync_single_project(project: str, state: dict, catalog: singer.catalog.Catalog) -> None:
     """
